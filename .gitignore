@@ -1,0 +1,15 @@
+# umbrella build artifacts
+/local_install/
+/build/
+/install/
+/out/
+/output*/
+/logs/
+
+# common
+*.log
+*.tmp
+*.swp
+*.bak
+*.save_*
+.DS_Store
