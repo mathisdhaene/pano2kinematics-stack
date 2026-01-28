@@ -1,0 +1,15 @@
+[submodule "deps/theta-x-stream-tools"]
+	path = deps/theta-x-stream-tools
+	url = https://github.com/mathisdhaene/theta-x-stream-tools.git
+[submodule "deps/my_online_ik"]
+	path = deps/my_online_ik
+	url = https://github.com/mathisdhaene/my_online_ik.git
+[submodule "deps/pano2kinematics"]
+	path = deps/pano2kinematics
+	url = https://github.com/mathisdhaene/pano2kinematics.git
+[submodule "deps/concurrency"]
+	path = deps/concurrency
+	url = https://github.com/RealTimeBiomechanics/Concurrency.git
+[submodule "deps/filter"]
+	path = deps/filter
+	url = https://github.com/RealTimeBiomechanics/Filter.git
