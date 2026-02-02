@@ -2,7 +2,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-NPROC="$(command -v nproc >/dev/null 2>&1 && nproc || echo 4)"
+# Limit parallel builds by default on shared machines; override with NPROC.
+NPROC="${NPROC:-4}"
 
 PREFIX="${PREFIX:-$ROOT/local_install}"
 CONC_PREFIX="${CONC_PREFIX:-$PREFIX/concurrency}"
