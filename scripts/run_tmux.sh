@@ -32,7 +32,7 @@ CMD_IK="cd '$ROOT/deps/my_online_ik' \
 && ./build/online_ik_test data/upperlimb-biorob.osim"
 
 CMD_PY="cd '$ROOT/deps/pano2kinematics' \
-&& '$PY' live_cpu.py --live --shm-socket '$SOCK' --fps 30 --device cpu \
+&& uv run python live_cpu.py --live --shm-socket '$SOCK' --fps 30 --device cpu \
    --yolo weights/yolo_models/yolo11m-pose.pt --tracker bytetrack.yaml \
    --bio-cfg configs/biomeca.yaml \
    --nlf-weights weights/nlf/nlf_s_multi.torchscript \
