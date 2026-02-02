@@ -13,3 +13,4 @@
 *.bak
 *.save_*
 .DS_Store
+local_data/
