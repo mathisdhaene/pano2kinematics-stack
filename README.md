@@ -122,14 +122,30 @@ Expected path:
 deps/pano2kinematics/weights/nlf/nlf_s_multi.torchscript
 ```
 
-Create directories if needed:
+Inside the `pano2kinematics` submodule, create the weights tree if needed:
 ```bash
-mkdir -p deps/pano2kinematics/weights/nlf
+mkdir -p deps/pano2kinematics/weights/nlf deps/pano2kinematics/weights/yolo_models
 ```
 
-Then download and place:
+Then download and place the NLF weight file in `deps/pano2kinematics/weights/nlf/`:
 ```
 nlf_s_multi.torchscript
+```
+
+Download source:
+- Release page: https://github.com/isarandi/nlf/releases/tag/v0.2.0
+- File: `nlf_s_multi.torchscript` (from https://github.com/isarandi/nlf/releases)
+
+Direct download (choose one):
+```bash
+wget -O deps/pano2kinematics/weights/nlf/nlf_s_multi.torchscript \
+  https://github.com/isarandi/nlf/releases/download/v0.2.0/nlf_s_multi.torchscript
+```
+
+```bash
+curl -L \
+  https://github.com/isarandi/nlf/releases/download/v0.2.0/nlf_s_multi.torchscript \
+  -o deps/pano2kinematics/weights/nlf/nlf_s_multi.torchscript
 ```
 
 ⚠️ Without these weights, the markerless pipeline will not run.
