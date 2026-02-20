@@ -29,7 +29,7 @@ CMD_IK="cd '$ROOT/deps/my_online_ik' \
 && source scripts/env.sh \
 && export CONCURRENCY_INSTALL='$CONC_PREFIX' \
 && export FILTER_INSTALL='$FILT_PREFIX' \
-&& ./build/online_ik_test data/upperlimb-biorob.osim"
+&& ./build/online_ik_test data/upperlimb-biorob_nomuscle.osim"
 
 CMD_PY="cd '$ROOT/deps/pano2kinematics' \
 && uv run python live_cpu.py --live --shm-socket '$SOCK' --fps 30 --device cpu \

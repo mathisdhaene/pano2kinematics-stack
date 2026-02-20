@@ -265,6 +265,38 @@ make run
 
 This launches **3 tmux panes** in the correct order.
 
+### Temporary workaround (recommended for now)
+
+`make run` can be unstable on some machines because `online_ik_test` may fail intermittently and the Simbody visualizer may not open.
+
+Until this is fixed, prefer running the stack manually in **3 terminals**:
+
+1. **Terminal 1: Theta streaming**
+```bash
+cd deps/theta-x-stream-tools
+./min_latency_from_uvc
+```
+
+2. **Terminal 2: Online IK**  
+If Simbody crashes or the visualizer does not open, relaunch this command.
+```bash
+cd deps/my_online_ik
+source scripts/env.sh
+export CONCURRENCY_INSTALL="$PWD/../../local_install/concurrency"
+export FILTER_INSTALL="$PWD/../../local_install/filter"
+./build/online_ik_test data/upperlimb-biorob_nomuscle.osim
+```
+
+3. **Terminal 3: Python markerless pipeline**
+```bash
+cd deps/pano2kinematics
+uv run python live_cpu.py --live --shm-socket /tmp/theta_bgr.sock --fps 30 --device cpu \
+  --yolo weights/yolo_models/yolo11m-pose.pt --tracker bytetrack.yaml \
+  --bio-cfg configs/biomeca.yaml \
+  --nlf-weights weights/nlf/nlf_s_multi.torchscript \
+  -o output_nlf/markerless_live.mp4
+```
+
 Detach from tmux:
 ```
 Ctrl + b, then d
