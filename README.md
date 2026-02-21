@@ -181,8 +181,15 @@ This will:
 - create `deps/pano2kinematics/.venv`
 - install all Python dependencies reproducibly from `pyproject.toml`
 - respect the pinned Python version (3.10)
+- force `--system-site-packages` so `python3-gi` is visible in the venv
 
 The environment uses **system site-packages** so that `python3-gi` is visible.
+
+Quick validation:
+```bash
+python3 -c "import gi"
+deps/pano2kinematics/.venv/bin/python -c "import gi"
+```
 
 ---
 
@@ -347,6 +354,12 @@ Check:
 ```bash
 python3 -c "import gi"
 deps/pano2kinematics/.venv/bin/python -c "import gi"
+```
+
+If the first command works but the second fails, recreate the venv:
+```bash
+rm -rf deps/pano2kinematics/.venv
+make py
 ```
 
 ---

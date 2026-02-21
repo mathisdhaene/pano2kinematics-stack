@@ -22,6 +22,14 @@ if [[ ! -x "$PY" ]]; then
   exit 1
 fi
 
+if ! "$PY" -c "import gi" >/dev/null 2>&1; then
+  echo "[error] Python GI bindings unavailable in $VENV"
+  echo "[cause] missing system packages (python3-gi) or venv not built with --system-site-packages"
+  echo "[fix]   sudo apt install python3-gi python3-gi-cairo libgirepository1.0-dev"
+  echo "[fix]   make py"
+  exit 1
+fi
+
 # ---- commands ----
 CMD_STREAM="cd '$ROOT/deps/theta-x-stream-tools' && ./min_latency_from_uvc"
 
@@ -71,4 +79,3 @@ tmux send-keys -t "$SESSION:0.2" "$CMD_PY" C-m
 
 tmux select-layout -t "$SESSION:0" tiled
 tmux attach -t "$SESSION"
-
