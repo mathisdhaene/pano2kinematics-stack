@@ -145,6 +145,7 @@ They must come from the **system Python**.
 ## 1) Clone (with submodules)
 
 ```bash
+cd ~
 git clone --recurse-submodules https://github.com/mathisdhaene/pano2kinematics-stack.git
 cd pano2kinematics-stack
 ```
