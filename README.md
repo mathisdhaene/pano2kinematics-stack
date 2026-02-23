@@ -140,6 +140,35 @@ sudo apt install   gstreamer1.0-tools   gstreamer1.0-plugins-base   gstreamer1.0
 `gi` / `Gst` **cannot** be installed via pip or uv.  
 They must come from the **system Python**.
 
+### THETA X streamer prerequisite (`libuvc-theta`)
+The THETA live source (`deps/theta-x-stream-tools/min_latency_from_uvc`) requires:
+- Ricoh patched `libuvc-theta` (not stock `libuvc`)
+- THETA camera connected over USB/UVC
+
+Install `libuvc-theta`:
+```bash
+git clone https://github.com/ricohapi/libuvc-theta.git
+cd libuvc-theta
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+```
+
+Quick USB check:
+```bash
+lsusb | grep -i theta
+```
+Expected for THETA X:
+```text
+ID 05ca:2717 Ricoh Co., Ltd RICOH THETA X
+```
+
+Note: this stack uses THETA over USB, not camera IP.
+
+For full streamer setup/troubleshooting:
+- `deps/theta-x-stream-tools/README.md`
+
 ---
 
 ## 1) Clone (with submodules)
