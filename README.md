@@ -362,6 +362,30 @@ rm -rf deps/pano2kinematics/.venv
 make py
 ```
 
+### `matplotlib` mismatch with `--system-site-packages`
+Symptom:
+- `uv run` can import `gi`, but `matplotlib` emits warnings/errors (for example `Axes3D` import failures).
+
+Cause:
+- system `python3-matplotlib` leaks `mpl_toolkits` into the venv while `matplotlib` itself comes from `uv`, creating a mixed-version import.
+
+Fix:
+```bash
+sudo apt remove -y python3-matplotlib
+rm -rf deps/pano2kinematics/.venv
+make py
+```
+
+Verify import origins:
+```bash
+cd deps/pano2kinematics
+uv run python -c "import gi, matplotlib, mpl_toolkits.mplot3d as m3d; print(gi.__file__); print(matplotlib.__file__); print(m3d.__file__)"
+```
+
+Expected:
+- `gi` from `/usr/lib/python3/dist-packages/...`
+- `matplotlib` and `mplot3d` from `deps/pano2kinematics/.venv/...`
+
 ---
 
 ## Reproducibility
